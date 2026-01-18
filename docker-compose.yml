@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  server:
+    build: ./server
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=file:./dev.db
+      - JWT_SECRET=production_secret_change_me
+    volumes:
+      - ./server/prisma:/app/prisma
+      - ./server/uploads:/app/uploads
+      - ./server/dev.db:/app/dev.db
+    restart: always
+
+  client:
+    build: ./client
+    ports:
+      - "5173:80"
+    depends_on:
+      - server
+    restart: always
+
+# In a real production setup, we would use a real database container (Postgres)
+# instead of SQLite. Currently using SQLite file mounted from host for persistence.

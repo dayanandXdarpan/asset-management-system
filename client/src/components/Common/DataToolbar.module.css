@@ -1,0 +1,116 @@
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-glass);
+    border-radius: 12px;
+    padding: 12px;
+    margin-bottom: 24px;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.searchGroup {
+    display: flex;
+    align-items: center;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-glass);
+    border-radius: 8px;
+    padding: 8px 12px;
+    flex: 1;
+    min-width: 200px;
+}
+
+.searchIcon {
+    color: var(--text-secondary);
+    margin-right: 8px;
+}
+
+.searchInput {
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    width: 100%;
+    outline: none;
+    font-size: 14px;
+}
+
+.actions {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.sortGroup {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    padding: 4px 8px;
+    border: 1px solid var(--border-glass);
+}
+
+.sortSelect {
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-size: 14px;
+    outline: none;
+    cursor: pointer;
+}
+
+.sortSelect option {
+    background: var(--bg-secondary);
+}
+
+.dirBtn {
+    background: none;
+    border: none;
+    color: var(--accent-primary);
+    font-size: 11px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 4px;
+}
+
+.fileActions {
+    display: flex;
+    gap: 8px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 640px) {
+    .toolbar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        padding: 12px;
+    }
+
+    .searchGroup {
+        min-width: auto;
+        width: 100%;
+    }
+
+    .actions {
+        justify-content: space-between;
+        width: 100%;
+        gap: 8px;
+    }
+
+    .sortGroup {
+        flex: 1;
+    }
+
+    .fileActions {
+        gap: 6px;
+    }
+
+    .fileActions button {
+        padding: 6px 10px;
+        font-size: 0.85rem;
+    }
+}

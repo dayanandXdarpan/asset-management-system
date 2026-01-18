@@ -1,0 +1,157 @@
+.container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    animation: fadeIn 0.4s ease-out;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+@media (max-width: 640px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+.badge {
+    display: flex;
+    align-items: center;
+    padding: 6px 12px;
+    background: rgba(99, 102, 241, 0.1);
+    color: var(--accent-primary);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.card {
+    padding: 0;
+    overflow: hidden;
+}
+
+.loading {
+    padding: 40px;
+    text-align: center;
+    color: var(--text-secondary);
+}
+
+.tableWrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px; /* Ensure columns don't crush on mobile */
+}
+
+.table th {
+    text-align: left;
+    padding: 16px 24px;
+    background: rgba(0, 0, 0, 0.02);
+    color: var(--text-secondary);
+    font-weight: 600;
+    font-size: 0.85rem;
+    border-bottom: 1px solid var(--border-glass);
+}
+
+.table td {
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--border-glass);
+    color: var(--text-primary);
+    font-size: 0.9rem;
+}
+
+.table tr:last-child td {
+    border-bottom: none;
+}
+
+.table tr:hover {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.userCell {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+.userName {
+    font-weight: 500;
+}
+
+.userEmail {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.actionBadge {
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-width: 1px;
+    border-style: solid;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.entity {
+    font-weight: 500;
+}
+
+.dateCell {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+
+.detailsCell {
+    color: var(--text-secondary);
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.accessDenied {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 60vh;
+    color: var(--text-primary);
+    text-align: center;
+}
+
+.accessDenied h2 {
+    margin-top: 16px;
+    margin-bottom: 8px;
+    font-size: 1.5rem;
+}
+
+.accessDenied p {
+    color: var(--text-secondary);
+}

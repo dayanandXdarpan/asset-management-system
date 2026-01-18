@@ -1,0 +1,123 @@
+.container {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.main {
+    flex: 1;
+    margin-left: 260px;
+    /* Sidebar width */
+    padding: 30px;
+    transition: margin-left 0.3s ease;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.main.collapsed {
+    margin-left: 80px;
+}
+
+@media (max-width: 768px) {
+    .main {
+        margin-left: 0 !important;
+        padding: 16px;
+    }
+}
+
+.content {
+    max-width: 1400px;
+    margin: 0 auto;
+    animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.mobileToggle {
+    display: none;
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    z-index: 100;
+    background: var(--bg-card);
+    border: 1px solid var(--border-glass);
+    border-radius: 8px;
+    padding: 8px;
+    cursor: pointer;
+    color: var(--text-primary);
+    backdrop-filter: blur(8px);
+    box-shadow: var(--shadow-glass);
+    transition: all 0.2s;
+}
+
+@media (max-width: 768px) {
+    .mobileToggle {
+        display: block;
+    }
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 40;
+    backdrop-filter: blur(4px);
+    animation: fadeIn 0.3s ease;
+}
+
+.mobileToggle:hover {
+    background: var(--accent-primary);
+    color: white;
+    border-color: var(--accent-primary);
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    backdrop-filter: blur(2px);
+}
+
+@media (max-width: 768px) {
+    .mobileToggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .overlay {
+        display: block;
+    }
+
+    .main {
+        margin-left: 0 !important;
+        /* Override collapsed/desktop margins */
+        padding: 20px;
+        padding-top: 70px;
+        /* Space for hamburger */
+    }
+
+    .main.collapsed {
+        margin-left: 0;
+    }
+
+    .content {
+        width: 100%;
+        overflow-x: hidden;
+    }
+}

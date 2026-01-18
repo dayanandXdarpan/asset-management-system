@@ -1,0 +1,313 @@
+.sidebar {
+    width: 260px;
+    height: 100vh;
+    background: var(--bg-secondary);
+    border-right: 1px solid var(--border-glass);
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(20px);
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-100%);
+        width: 260px !important;
+    }
+
+    .sidebar.mobileOpen {
+        transform: translateX(0);
+    }
+}
+
+.sidebar.collapsed {
+    width: 80px;
+}
+
+.logo {
+    padding: 24px;
+    border-bottom: 1px solid var(--border-glass);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+}
+
+.sidebar.collapsed .logo {
+    justify-content: center;
+    padding: 24px 0;
+}
+
+.logoIcon {
+    color: var(--accent-primary);
+}
+
+.brand {
+    font-weight: 700;
+    font-size: 1.25rem;
+    background: linear-gradient(to right, var(--text-primary), var(--text-secondary));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.5px;
+    white-space: nowrap;
+}
+
+.collapseBtn {
+    background: transparent;
+    border: 1px solid var(--border-glass);
+    color: var(--text-secondary);
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+/* Mobile Visibility Utilities */
+.mobileOnly {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .mobileOnly {
+        display: flex;
+    }
+
+    .desktopOnly {
+        display: none;
+    }
+}
+
+
+.collapseBtn:hover {
+    background: var(--accent-primary);
+    color: white;
+    border-color: var(--accent-primary);
+}
+
+.nav {
+    flex: 1;
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.sidebar.collapsed .nav {
+    padding: 24px 12px;
+}
+
+.link {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    color: var(--text-secondary);
+    border-radius: var(--radius-md);
+    position: relative;
+    overflow: hidden;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.sidebar.collapsed .link {
+    justify-content: center;
+    padding: 12px;
+}
+
+.link:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.link.active {
+    color: #fff;
+    background: linear-gradient(90deg, rgba(99, 102, 241, 0.15), transparent);
+    border-left: 3px solid var(--accent-primary);
+}
+
+.sidebar.collapsed .link.active {
+    border-left: none;
+    background: var(--accent-primary);
+}
+
+.link.active .icon {
+    color: var(--accent-primary);
+}
+
+.sidebar.collapsed .link.active .icon {
+    color: #fff;
+}
+
+.glow {
+    position: absolute;
+    right: 8px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-primary);
+    box-shadow: 0 0 8px var(--accent-primary);
+}
+
+.icon {
+    margin-right: 12px;
+    transition: color 0.2s;
+    min-width: 20px;
+}
+
+.sidebar.collapsed .icon {
+    margin-right: 0;
+}
+
+.label {
+    transition: opacity 0.2s;
+}
+
+.footer {
+    padding: 16px;
+    border-top: 1px solid var(--border-glass);
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar.collapsed .footer {
+    align-items: center;
+}
+
+.themeToggle {
+    display: flex;
+    background: var(--bg-primary);
+    padding: 4px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    border: 1px solid var(--border-glass);
+    justify-content: space-between;
+}
+
+.themeBtn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    padding: 6px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.themeBtn:hover {
+    color: var(--text-primary);
+    background: var(--bg-secondary);
+}
+
+.activeTheme {
+    background: var(--accent-primary) !important;
+    color: white !important;
+}
+
+/* ================================
+   MOBILE RESPONSIVE STYLES
+   ================================ */
+@media (max-width: 768px) {
+
+    /* Hide desktop toggle, show mobile toggle */
+    .desktopOnly {
+        display: none !important;
+    }
+
+    .mobileOnly {
+        display: flex !important;
+    }
+
+    /* Sidebar should be hidden off-screen by default on mobile */
+    .sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 280px;
+        height: 100vh;
+        z-index: 1100;
+        transform: translateX(-100%);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: none;
+    }
+
+    /* When sidebar wrapper has mobileOpen class, show sidebar */
+    .sidebar.mobileOpen {
+        transform: translateX(0);
+        box-shadow: 4px 0 24px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Ensure sidebar is never collapsed on mobile (show full labels) */
+    .sidebar.collapsed {
+        width: 280px;
+    }
+
+    .sidebar.collapsed .logo {
+        justify-content: space-between;
+        padding: 24px;
+    }
+
+    .sidebar.collapsed .nav {
+        padding: 24px 16px;
+    }
+
+    .sidebar.collapsed .link {
+        justify-content: flex-start;
+        padding: 12px 16px;
+    }
+
+    .sidebar.collapsed .icon {
+        margin-right: 12px;
+    }
+
+    .sidebar.collapsed .label {
+        display: inline;
+    }
+
+    .sidebar.collapsed .footer {
+        align-items: stretch;
+    }
+
+    /* Close button should be prominent */
+    .mobileOnly.collapseBtn {
+        width: 32px;
+        height: 32px;
+        background: rgba(239, 68, 68, 0.1);
+        border-color: rgba(239, 68, 68, 0.3);
+        color: #ef4444;
+    }
+
+    .mobileOnly.collapseBtn:hover {
+        background: #ef4444;
+        color: white;
+    }
+
+    /* Make nav links bigger for touch */
+    .link {
+        padding: 14px 16px;
+        font-size: 1rem;
+    }
+
+    /* Theme toggle should be full width */
+    .themeToggle {
+        margin-bottom: 16px;
+    }
+
+    .themeBtn {
+        padding: 10px;
+    }
+}

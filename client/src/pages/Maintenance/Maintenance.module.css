@@ -1,0 +1,179 @@
+.container {
+    animation: fadeIn 0.4s ease;
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 20px;
+}
+
+@media (max-width: 640px) {
+    .container {
+        padding: 16px;
+    }
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+@media (max-width: 640px) {
+    .header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .header > div {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
+.formCard {
+    margin-bottom: 40px;
+    padding: 24px;
+    border-left: 4px solid var(--accent-primary);
+    background: var(--bg-card);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-glass);
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.row {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.input,
+.select,
+.textarea {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-glass);
+    padding: 12px;
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-family: inherit;
+    flex: 1;
+    min-width: 200px;
+    outline: none;
+    transition: all 0.2s;
+}
+
+.input:focus, .select:focus, .textarea:focus {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 2px var(--accent-glow);
+}
+
+/* Timeline Visualization */
+.timeline {
+    position: relative;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--border-glass);
+    z-index: 0;
+}
+
+.logCard {
+    position: relative;
+    margin-left: 24px;
+    padding: 20px;
+    background: var(--bg-card);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-glass);
+    transition: transform 0.2s;
+}
+
+.logCard:hover {
+    transform: translateX(5px);
+    border-color: var(--accent-primary);
+}
+
+.logCard::before {
+    content: '';
+    position: absolute;
+    left: -31px;
+    top: 24px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--bg-primary);
+    border: 2px solid var(--accent-primary);
+    z-index: 1;
+}
+
+.logHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-glass);
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+@media (max-width: 640px) {
+    .logHeader {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .assetInfo {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+}
+
+.assetInfo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.assetName {
+    font-weight: 600;
+    color: var(--accent-primary);
+}
+
+.date,
+.tech {
+    display: flex;
+    align-items: center;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    gap: 4px;
+}
+
+.description {
+    color: var(--text-primary);
+    line-height: 1.5;
+}
+
+.empty {
+    text-align: center;
+    color: var(--text-muted);
+    padding: 40px;
+}

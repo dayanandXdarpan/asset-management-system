@@ -1,0 +1,167 @@
+.container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    position: relative;
+    overflow: hidden;
+    padding: 20px;
+}
+
+/* Abstract Grid Background */
+.container::before {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-position: center center;
+    transform: rotate(15deg);
+    animation: pan 60s linear infinite;
+    z-index: 0;
+}
+
+/* Glowing Orb Effects */
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: 1;
+    opacity: 0.6;
+}
+
+.orb1 {
+    top: -10%;
+    left: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, #3b82f6 0%, rgba(59, 130, 246, 0) 70%);
+    animation: pulse 10s ease-in-out infinite alternate;
+}
+
+.orb2 {
+    bottom: -10%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, #6366f1 0%, rgba(99, 102, 241, 0) 70%);
+    animation: pulse 15s ease-in-out infinite alternate-reverse;
+}
+
+/* Glassmorphism Card */
+.card {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 440px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 24px;
+    padding: 48px;
+    box-shadow: 
+        0 25px 50px -12px rgba(0, 0, 0, 0.25),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+    animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (max-width: 640px) {
+    .card {
+        padding: 24px;
+        max-width: 100%;
+    }
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.logoWrapper {
+    width: 72px;
+    height: 72px;
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+    box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+    transform: rotate(-5deg);
+    transition: transform 0.3s ease;
+}
+
+.card:hover .logoWrapper {
+    transform: rotate(0deg) scale(1.05);
+}
+
+.companyName {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #64748b;
+    margin-bottom: 12px;
+    display: block;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+}
+
+.title span {
+    background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+    margin-top: 8px;
+    color: #64748b;
+    font-size: 0.95rem;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.footer {
+    margin-top: 32px;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #94a3b8;
+    padding-top: 24px;
+    border-top: 1px solid #f1f5f9;
+}
+
+/* Animations */
+@keyframes pan {
+    0% { transform: rotate(15deg) translate(0, 0); }
+    100% { transform: rotate(15deg) translate(-50%, -50%); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 0.5; }
+    100% { transform: scale(1.1); opacity: 0.7; }
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Dark Mode Support (if implicit in context, though login is usually specific theme) */
+@media (prefers-color-scheme: dark) {
+    /* Keeping the card light for consistency for now, or could handle dark mode explicitly */
+}

@@ -1,0 +1,28 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@hono/node-server": "^1.19.7",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/node": "^25.0.3",
+    "hono": "^4.11.3",
+    "prisma": "^5.19.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@hono/zod-validator": "^0.7.6",
+    "@prisma/client": "^5.19.0",
+    "bcryptjs": "^3.0.3",
+    "zod": "^4.3.5"
+  }
+}

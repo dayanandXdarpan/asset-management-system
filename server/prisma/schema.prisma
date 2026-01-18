@@ -1,0 +1,76 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id         Int      @id @default(autoincrement())
+  name       String
+  email      String   @unique
+  password   String
+  role       String   @default("VIEWER") // ADMIN, TECHNICIAN, VIEWER
+  createdAt  DateTime @default(now())
+  auditLogs  AuditLog[]
+}
+
+model Location {
+  id        Int      @id @default(autoincrement())
+  siteName  String
+  region    String
+  assets    Asset[]
+}
+
+model Asset {
+  id               Int      @id @default(autoincrement())
+  name             String
+  type             String
+  image            String?
+  installationDate DateTime
+  status           String   @default("OPERATIONAL") // OPERATIONAL, DOWNTIME, MAINTENANCE
+  locationId       Int
+  location         Location @relation(fields: [locationId], references: [id])
+  vendorId         Int?
+  vendor           Vendor?  @relation(fields: [vendorId], references: [id])
+  maintenance      MaintenanceRecord[]
+  createdAt        DateTime @default(now())
+}
+
+model MaintenanceRecord {
+  id              Int      @id @default(autoincrement())
+  assetId         Int
+  asset           Asset    @relation(fields: [assetId], references: [id])
+  date            DateTime @default(now()) // Scheduled Date or Creation Date
+  dueDate         DateTime?
+  completionDate  DateTime?
+  status          String   @default("COMPLETED") // SCHEDULED, IN_PROGRESS, COMPLETED, CANCELLED
+  priority        String   @default("MEDIUM") // LOW, MEDIUM, HIGH
+  workDescription String
+  performedBy     String
+}
+
+model Vendor {
+  id            Int      @id @default(autoincrement())
+  name          String
+  contactPerson String?
+  email         String?
+  phone         String?
+  address       String?
+  website       String?
+  assets        Asset[]
+  createdAt     DateTime @default(now())
+}
+
+model AuditLog {
+  id        Int      @id @default(autoincrement())
+  action    String
+  entity    String
+  entityId  Int?
+  details   String?
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+}
