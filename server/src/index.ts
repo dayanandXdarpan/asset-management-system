@@ -19,7 +19,10 @@ import { errorHandler, loggerMiddleware } from './middleware/error'
 const app = new Hono()
 
 app.use('*', loggerMiddleware)
-app.use('/*', cors())
+app.use('/*', cors({
+    origin: ['http://localhost:5173', 'https://asset-monitor.netlify.app'],
+    credentials: true
+}))
 app.use('/uploads/*', serveStatic({ root: './' }))
 
 app.onError(errorHandler)
@@ -42,7 +45,7 @@ app.get('/', (c) => {
     return c.text('Asset Management API is running!')
 })
 
-const port = 3000
+const port = Number(process.env.PORT) || 3000
 console.log(`Server is running on port ${port}`)
 
 serve({
