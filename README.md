@@ -59,8 +59,8 @@ A modern, full-stack web application for managing organizational assets, mainten
 
 1. **Clone the repository**
 ```bash
-git clone <your-repo-url>
-cd internship_asset_management
+git clone https://github.com/dayanandXdarpan/asset-management-system.git
+cd asset-management-system
 ```
 
 2. **Install Server Dependencies**
@@ -287,7 +287,12 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## 👤 Author
 
-Developed during internship project at [Organization Name]
+**Dayanand Darpan**
+- 🌐 Website: [dayanand.darpan.me](https://dayanand.darpan.me)
+- 📧 Email: dayananddarpan@gmail.com
+- 💼 GitHub: [@dayanandXdarpan](https://github.com/dayanandXdarpan)
+
+Developed as an internship project for Asset Management System
 
 ## 🙏 Acknowledgments
 
@@ -298,7 +303,10 @@ Developed during internship project at [Organization Name]
 
 ## 📞 Support
 
-For support, email: your-email@example.com
+For support and inquiries:
+- 📧 Email: dayananddarpan@gmail.com
+- 🌐 Website: [dayanand.darpan.me](https://dayanand.darpan.me)
+- 💬 GitHub Issues: [Report a bug](https://github.com/dayanandXdarpan/asset-management-system/issues)
 
 ---
 
