@@ -19,7 +19,6 @@ build/
 # Database
 server/prisma/dev.db
 server/prisma/dev.db-journal
-server/prisma/migrations/
 
 # Uploads
 server/uploads/
