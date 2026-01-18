@@ -10,12 +10,15 @@ import users from './routes/users'
 import vendorRoutes from './routes/vendors'
 import auditRoutes from './routes/audit'
 import { serveStatic } from '@hono/node-server/serve-static'
+import { PrismaClient } from '@prisma/client'
+import { hash } from 'bcryptjs'
 
 import auth from './routes/auth'
 import { authMiddleware } from './middleware/auth'
 
 import { errorHandler, loggerMiddleware } from './middleware/error'
 
+const prisma = new PrismaClient()
 const app = new Hono()
 
 app.use('*', loggerMiddleware)
@@ -47,10 +50,52 @@ app.get('/', (c) => {
     return c.text('Asset Management API is running!')
 })
 
+// Auto-seed database on startup if empty
+async function initializeDatabase() {
+    try {
+        const userCount = await prisma.user.count()
+        if (userCount === 0) {
+            console.log('🌱 Database is empty, running auto-seed...')
+            const password = await hash('password123', 10)
+            
+            // Create admin user
+            await prisma.user.create({
+                data: {
+                    email: 'admin@test.com',
+                    name: 'Admin User',
+                    password,
+                    role: 'ADMIN',
+                }
+            })
+            
+            // Create technician user
+            await prisma.user.create({
+                data: {
+                    email: 'tech@test.com',
+                    name: 'John Technician',
+                    password,
+                    role: 'TECHNICIAN',
+                }
+            })
+            
+            console.log('✅ Auto-seed complete!')
+            console.log('📧 Admin: admin@test.com / password123')
+            console.log('📧 Tech: tech@test.com / password123')
+        } else {
+            console.log(`✅ Database initialized with ${userCount} users`)
+        }
+    } catch (error) {
+        console.error('❌ Database initialization failed:', error)
+    }
+}
+
 const port = Number(process.env.PORT) || 3000
 console.log(`Server is running on port ${port}`)
 
-serve({
-    fetch: app.fetch,
-    port
+// Initialize database before starting server
+initializeDatabase().then(() => {
+    serve({
+        fetch: app.fetch,
+        port
+    })
 })
