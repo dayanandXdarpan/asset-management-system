@@ -139,14 +139,19 @@ async function main() {
         }
     })
     console.log('Audit logs created')
+
+    console.log('✅ Database seeded successfully!')
+    console.log('📧 Admin: admin@test.com / password123')
+    console.log('📧 Tech: tech@test.com / password123')
 }
 
 main()
     .then(async () => {
         await prisma.$disconnect()
+        process.exit(0)
     })
     .catch(async (e) => {
-        console.error(e)
+        console.error('❌ Seed failed:', e)
         await prisma.$disconnect()
         process.exit(1)
     })
