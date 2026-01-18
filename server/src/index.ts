@@ -20,8 +20,10 @@ const app = new Hono()
 
 app.use('*', loggerMiddleware)
 app.use('/*', cors({
-    origin: ['http://localhost:5173', 'https://asset-monitor.netlify.app'],
-    credentials: true
+    origin: ['http://localhost:5173', 'https://asset-monitor.netlify.app', 'https://asset-management-system-z92r.onrender.com'],
+    credentials: true,
+    allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowHeaders: ['Content-Type', 'Authorization']
 }))
 app.use('/uploads/*', serveStatic({ root: './' }))
 
