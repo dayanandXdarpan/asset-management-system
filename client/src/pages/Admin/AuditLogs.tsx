@@ -57,10 +57,10 @@ export const AuditLogs = () => {
             case 'DELETE': return '#ef4444';
             default: return 'var(--text-primary)';
         }
+    };
+
     const totalPages = Math.ceil(logs.length / ITEMS_PER_PAGE);
     const paginatedLogs = logs.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
-
-    };
 
     return (
         <div className={styles.container}>
