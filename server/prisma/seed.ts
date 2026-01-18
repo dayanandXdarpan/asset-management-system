@@ -4,6 +4,8 @@ import { hash } from 'bcryptjs'
 const prisma = new PrismaClient()
 
 async function main() {
+    console.log('🌱 Starting database seed...')
+    
     // 1. Clean up
     await prisma.maintenanceRecord.deleteMany()
     await prisma.asset.deleteMany()
@@ -12,7 +14,7 @@ async function main() {
     await prisma.auditLog.deleteMany()
     await prisma.user.deleteMany()
 
-    console.log('Cleaned up database')
+    console.log('✓ Cleaned up database')
 
     // 2. Create Users
     const password = await hash('password123', 10)
